@@ -10,7 +10,9 @@ public class DCLockingSingleton {
     private static DCLockingSingleton getInstance() {
         if(uniqueInstance == null) {
             synchronized (DCLockingSingleton.class) {
-                uniqueInstance = new DCLockingSingleton();
+                if(uniqueInstance == null) {
+                    uniqueInstance = new DCLockingSingleton();
+                }
             }
         }
         return uniqueInstance;
