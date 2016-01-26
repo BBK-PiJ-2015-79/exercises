@@ -6,6 +6,15 @@ class Cup {
     if(percentFull > max) {
       percentFull = max
     }
+    else if(percentFull < 0) {
+      percentFull = 0
+    }
     percentFull // Return this value
+  }
+  def get(): Int = {
+    percentFull
+  }
+  def set(newPercent: Int): Unit = {
+    percentFull = newPercent
   }
 }
