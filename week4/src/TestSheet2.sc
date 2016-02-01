@@ -31,8 +31,14 @@ println(myVector1)
 println(myVector2)
 val mixedVector = Vector[Vector[Int]](myVector1, myVector2)
 mixedVector.head
-for(word <- v3)
+var sent = ""
+for(word <- v3) {
   println(word)
+  sent = sent.concat(word.concat(" "))
+}
+println(sent)
+
+
 /*/
 for(word <- v3.filter())
   println(word)
