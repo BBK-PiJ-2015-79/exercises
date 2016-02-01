@@ -1,8 +1,5 @@
 package sml;
 
-/**
- * Created by chris on 01/02/2016.
- */
 public class MultiplyInstruction extends Instruction {
     private int result;
     private int op1;
@@ -20,7 +17,8 @@ public class MultiplyInstruction extends Instruction {
     }
     @Override
     public void execute(Machine m) {
-        //To-do
-
+        int value1 = m.getRegisters().getRegister(op1);
+        int value2 = m.getRegisters().getRegister(op2);
+        m.getRegisters().setRegister(result, value1 * value2);
     }
 }
