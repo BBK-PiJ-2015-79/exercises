@@ -76,7 +76,8 @@ public class Translator {
         int s1; // Possible operands of the instruction
         int s2;
         int r;
-        int x;
+        int x; // not used - is this necessary?
+        String nextInstruction;
 
         if (line.equals(""))
             return null;
@@ -110,6 +111,11 @@ public class Translator {
                 r = scanInt();
                 s1 = scanInt();
                 return new LinInstruction(label, r, s1);
+            case "bnz":
+                r = scanInt();
+                nextInstruction = scan();
+                return new BnzInstruction(label, r, nextInstruction);
+                //how to get the second word?
         }
 
         // You will have to write code here for the other instructions.

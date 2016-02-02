@@ -18,4 +18,9 @@ public class OutInstruction extends Instruction {
     public void execute(Machine m) {
         System.out.println(m.getRegisters().getRegister(op));
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + op;
+    }
 }
