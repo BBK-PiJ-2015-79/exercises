@@ -11,7 +11,7 @@ import java.util.Properties;
  * Created by chris on 18/01/2016.
  */
 public class HelloWorldSpring {
-    private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/week2/src/springdi/bean.properties";
+    private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/week02/src/springdi/bean.properties";
 
     public static void main(String[] args) throws Exception {
         //get the Bean Factory

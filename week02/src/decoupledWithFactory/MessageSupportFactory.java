@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class MessageSupportFactory {
-    private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/week2/src/decoupledWithFactory/bean.properties";
+    private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/week02/src/decoupledWithFactory/bean.properties";
     private static MessageSupportFactory instance;
     private Properties props;
     private MessageRenderer renderer;
