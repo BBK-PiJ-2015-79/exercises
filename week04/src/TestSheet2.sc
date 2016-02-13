@@ -37,8 +37,6 @@ for(word <- v3) {
   sent = sent.concat(word.concat(" "))
 }
 println(sent)
-
-
 /*/
 for(word <- v3.filter())
   println(word)
