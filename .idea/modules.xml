@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/cw-one/cw-one.iml" filepath="$PROJECT_DIR$/cw-one/cw-one.iml" />
       <module fileurl="file://$PROJECT_DIR$/exercises.iml" filepath="$PROJECT_DIR$/exercises.iml" />
       <module fileurl="file://$PROJECT_DIR$/sandbox/sandbox.iml" filepath="$PROJECT_DIR$/sandbox/sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sandbox-scala/sandbox-scala.iml" filepath="$PROJECT_DIR$/sandbox-scala/sandbox-scala.iml" />
       <module fileurl="file://$PROJECT_DIR$/week01/week01.iml" filepath="$PROJECT_DIR$/week01/week01.iml" />
       <module fileurl="file://$PROJECT_DIR$/week02/week02.iml" filepath="$PROJECT_DIR$/week02/week02.iml" />
       <module fileurl="file://$PROJECT_DIR$/week03/week03.iml" filepath="$PROJECT_DIR$/week03/week03.iml" />
