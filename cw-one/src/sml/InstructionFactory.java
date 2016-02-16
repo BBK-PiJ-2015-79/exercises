@@ -33,11 +33,10 @@ public class InstructionFactory {
      * Get an instance of the InstructionFactory
      */
     public static InstructionFactory getInstance() {
-        //if(instance == null) {
-        //    instance = new InstructionFactory();
-        //}
-        //return instance;
-        return null;
+        if(instance == null) {
+            instance = new InstructionFactory();
+        }
+        return instance;
     }
 
     public Instruction getInstruction(String op, String args) {
