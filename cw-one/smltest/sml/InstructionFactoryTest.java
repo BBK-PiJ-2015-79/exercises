@@ -18,11 +18,16 @@ public class InstructionFactoryTest {
         assertEquals(factory, anotherFactory);
     }
 
+    @Test
+    public void testPropsIsLoadedOnFactoryInstantiation() {
+        InstructionFactory factory = InstructionFactory.getInstance();
+
+    }
 
     @Test
     public void testGetInstructionDoesNotReturnNull() {
         InstructionFactory factory = InstructionFactory.getInstance();
-        Instruction ins = factory.getInstruction("Nowt", "21 22 Hello");
+        Instruction ins = factory.getInstruction("Add", "8 22 23");
 
         assertNotNull(ins);
     }
