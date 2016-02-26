@@ -33,7 +33,15 @@ val m1 = Map("Cheese" -> 1)
 m1
 updateMap(m1, "Bacon")
 
-val sentence = "This is a sentence!"
+val sentence = "I am a mole and I live in a hole"
 sentence.filter(_.isLetter)
 sentence.filter(_.isLetter).map(_.isUpper).reduce((c1,c2) => c1 && c2)
 "HEY DUDES".filter(_.isLetter).map(_.isUpper).reduce((c1,c2) => c1 && c2)
+
+//sentence.split(" ").toSet.foreach(c => c) yield (c, sentence.split(" ").count(d => d == c))
+
+
+(for(c: String <- sentence.split(" ").toSet) yield (c, sentence.split(" ").count(d => d == c))).toMap
+
+
+
