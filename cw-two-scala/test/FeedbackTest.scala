@@ -6,31 +6,28 @@ class FeedbackTest {
   val whitePeg = new White
   @Test
   def testEmptyFeedbackToString = {
-    val emptyArray: Vector[FeedbackPeg] = Vector()
-    val feedback = new Feedback(emptyArray)
+    val emptyVector: Vector[FeedbackPeg] = Vector()
+    val feedback = new Feedback(emptyVector)
     assertEquals("No pegs", feedback.toString)
   }
-
 
   @Test
   def testBlackFeedbackToString = {
-    val blackArray = Vector(blackPeg, blackPeg)
-    val feedback = new Feedback(blackArray)
+    val blackVector = Vector(blackPeg, blackPeg)
+    val feedback = new Feedback(blackVector)
     assertEquals("Black, Black", feedback.toString)
-  }
-  /*
-  @Test
-  def testWhiteFeedbackToString = {
-    val emptyArray: Array[FeedbackPeg] = Array.empty
-    val feedback = new Feedback(emptyArray)
-    assertEquals("No pegs", feedback.toString)
   }
 
   @Test
-  def testBlackWhiteFeedbackToString = {
-    val emptyArray: Array[FeedbackPeg] = Array.empty
-    val feedback = new Feedback(emptyArray)
-    assertEquals("No pegs", feedback.toString)
+  def testWhiteFeedbackToString = {
+    val whiteVector = Vector(whitePeg, whitePeg)
+    val feedback = new Feedback(whiteVector)
+    assertEquals("White, White", feedback.toString)
   }
-  */
+  @Test
+  def testBlackWhiteFeedbackToString = {
+    val mixedVector = Vector(whitePeg, blackPeg)
+    val feedback = new Feedback(mixedVector)
+    assertEquals("White, Black", feedback.toString)
+  }
 }
