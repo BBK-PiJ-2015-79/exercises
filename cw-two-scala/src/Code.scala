@@ -6,6 +6,6 @@ class Code(size: Integer) {
 
   def getCode = code
 
-  override def toString = ???
+  override def toString = code.mkString
 
 }
