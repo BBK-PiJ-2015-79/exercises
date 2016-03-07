@@ -1,9 +1,9 @@
 class CodeController(val code:Code) {
 
+  def validateGuess(guess: Guess) = {
+    code.getCode.size == guess.coloursGuessed.size
+  }
 
-
-
-  //TODO check guess and give feedback
   def getFeedback(guess: Guess) = {
     val numBlackPegs = guess.coloursGuessed.zip(code.getCode).count(t => t._1 == t._2)
     val guessMap = guess.coloursGuessed.groupBy(identity).mapValues(_.size)

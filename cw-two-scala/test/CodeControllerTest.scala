@@ -46,4 +46,32 @@ class CodeControllerTest {
     assertEquals("Black, White", feedback.toString)
   }
 
+  @Test
+  def testGetFeedbackReturnsOneBlackThreeWhites() = {
+    mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red(), Green())))
+    val feedback = mc.getFeedback(new Guess(Vector(Red(), Red(), Green(), Green(), Blue())))
+    assertEquals("Black, White, White, White", feedback.toString)
+  }
+
+  @Test
+  def testGetFeedbackReturnsAllBlacks() = {
+    mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess(Vector(Red(), Blue(), Red(), Red())))
+    assertEquals("Black, Black, Black, Black", feedback.toString)
+  }
+
+  @Test
+  def checkGuessTooSmallRejected() = {
+    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue()))))
+  }
+
+  @Test
+  def checkGuessTooLargeRejected() = {
+    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue(), Green(), Blue()))))
+  }
+
+  @Test
+  def checkRightSizeGuessAccepted() = {
+    assertTrue(cc.validateGuess(new Guess(Vector(Green(), Blue(), Green(), Blue()))))
+  }
 }
