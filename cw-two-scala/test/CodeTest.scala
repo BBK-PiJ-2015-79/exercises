@@ -3,7 +3,7 @@ import org.junit._
 import org.junit.Assert._
 
 class CodeTest {
-  val code = new Code(4)
+  val code = new CodeImpl(4)
 
   @Test
   def testToString = {

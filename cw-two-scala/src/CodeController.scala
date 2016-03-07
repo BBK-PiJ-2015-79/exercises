@@ -1,7 +1,7 @@
-class CodeController {
+class CodeController(val code:Code) {
 
-  val SIZE_OF_CODE = 4
-  val code = new Code(SIZE_OF_CODE)
+
+
 
   //TODO check guess and give feedback
   def getFeedback(guess: Guess) = {

@@ -6,10 +6,12 @@ import org.junit.Assert._
 class CodeControllerTest {
 
   var cc: CodeController =_
+  var mc: CodeController = _
 
   @Before
   def setUp() = {
-    cc = new CodeController
+    cc = new CodeController(new CodeImpl(4))
+    //mc = new CodeController(new MockCode(4))
   }
 
   @Test
