@@ -11,12 +11,18 @@ class CodeControllerTest {
   @Before
   def setUp() = {
     cc = new CodeController(new CodeImpl(4))
-    //mc = new CodeController(new MockCode(4))
   }
 
   @Test
   def testCodeIsNotNull() ={
     assertNotNull(cc.code)
+  }
+
+  @Test
+  def testGetFeedbackReturnsEmpty() = {
+    mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess(Vector(Green(), Green(), Green(), Green())))
+    assertTrue(feedback.pegs.isEmpty)
   }
 
 
