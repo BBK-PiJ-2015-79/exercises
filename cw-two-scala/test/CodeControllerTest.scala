@@ -25,5 +25,25 @@ class CodeControllerTest {
     assertTrue(feedback.pegs.isEmpty)
   }
 
+  @Test
+  def testGetFeedbackReturnsOneBlack() = {
+    mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess(Vector(Green(), Red(), Green(), Green())))
+    assertEquals("Black", feedback.toString)
+  }
+
+  @Test
+  def testGetFeedbackReturnsOneWhite() = {
+    mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess(Vector(Green(), Red(), Green(), Green())))
+    assertEquals("White", feedback.toString)
+  }
+
+  @Test
+  def testGetFeedbackReturnsOneBlackOneWhite() = {
+    mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess(Vector(Red(), Red(), Green(), Green())))
+    assertEquals("Black, White", feedback.toString)
+  }
 
 }
