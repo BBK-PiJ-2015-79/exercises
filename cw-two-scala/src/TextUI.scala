@@ -42,7 +42,7 @@ Enter guess: """)
   }
   def getGuess() = {
     val guessString = readLine()
-    guessString
+    guessString.trim.toUpperCase
   }
   def showFeedback(guessHistory : Array[(Guess, Feedback)], size: Int) = {
     guessHistory.foreach(t => {
