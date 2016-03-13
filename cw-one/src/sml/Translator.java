@@ -2,6 +2,7 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -11,7 +12,8 @@ import java.util.Scanner;
  */
 public class Translator {
 
-    private static final String PATH = "/Users/chris/IdeaProjects/exercises/cw-one/";
+    //private static final String PATH = "/Users/chris/IdeaProjects/exercises/cw-one/";
+    private static final String PATH = Paths.get("").toAbsolutePath().toString() + "/cw-one/";
     // word + line is the part of the current line that's not yet processed
     // word has no whitespace
     // If word and line are not empty, line begins with whitespace
@@ -79,48 +81,62 @@ public class Translator {
         int x; // not used - is this necessary?
         String nextInstruction;
 
+//        System.out.println("Test: " + label);
+//        System.out.println("Test: " + line);
+
         if (line.equals(""))
             return null;
 
         String ins = scan();
-        switch (ins) {
-            case "add":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new AddInstruction(label, r, s1, s2);
-            case "sub":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new SubtractInstruction(label, r, s1, s2);
-            case "mul":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new MultiplyInstruction(label, r, s1, s2);
-            case "div":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new DivideInstruction(label, r, s1, s2);
-            case "out":
-                r = scanInt();
-                return new OutInstruction(label, r);
-            case "lin":
-                r = scanInt();
-                s1 = scanInt();
-                return new LinInstruction(label, r, s1);
-            case "bnz":
-                r = scanInt();
-                nextInstruction = scan();
-                return new BnzInstruction(label, r, nextInstruction);
-                //how to get the second word?
+
+        InstructionFactory factory = InstructionFactory.getInstance();
+        Instruction returnIns = null;
+        try {
+            returnIns = factory.getInstruction(ins, line.trim()); //debugged
         }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return returnIns;
 
-        // You will have to write code here for the other instructions.
-
-        return null;
+//        switch (ins) {
+//            case "add":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new AddInstruction(label, r, s1, s2);
+//            case "sub":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new SubtractInstruction(label, r, s1, s2);
+//            case "mul":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new MultiplyInstruction(label, r, s1, s2);
+//            case "div":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new DivideInstruction(label, r, s1, s2);
+//            case "out":
+//                r = scanInt();
+//                return new OutInstruction(label, r);
+//            case "lin":
+//                r = scanInt();
+//                s1 = scanInt();
+//                return new LinInstruction(label, r, s1);
+//            case "bnz":
+//                r = scanInt();
+//                nextInstruction = scan();
+//                return new BnzInstruction(label, r, nextInstruction);
+//                //how to get the second word?
+//        }
+//
+//        // You will have to write code here for the other instructions.
+//
+//        return null;
     }
 
     /*

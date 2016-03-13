@@ -2,7 +2,6 @@ package sml;
 
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
@@ -13,8 +12,9 @@ import java.util.Properties;
 public class ReflectTestScript {
     //TODO remove this class! It's just a hack!
 
-    private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/cw-one/src/sml/bean.properties";
+    //private static final String FILENAME = "/Users/chris/IdeaProjects/exercises/cw-one/src/sml/bean.properties";
     //private static final String FILENAME = "bean.properties";
+    private static final String FILENAME = Paths.get("").toAbsolutePath().toString() + "/cw-one/src/sml/bean.properties";
 
     public static void main(String[] args) {
         ReflectTestScript test = new ReflectTestScript();
@@ -33,12 +33,15 @@ public class ReflectTestScript {
             Properties props = new Properties();
             props.load(new FileReader(FILENAME));
             for(String s : props.stringPropertyNames()) {
+                System.out.println();
+                System.out.println("====");
                 System.out.println(s);
                 System.out.println(props.getProperty(s));
+                System.out.println("====");
 
                 Class<?> instructionClass = Class.forName(props.getProperty(s));
                 Constructor<?>[] insConstructors = instructionClass.getConstructors();
-                for(int i = 0; i < insConstructors.length; i++) {
+                for(int i = 1; i < insConstructors.length; i++) {
                     Constructor<?> cons = insConstructors[i];
                     Class<?>[] params = cons.getParameterTypes();
                     System.out.println(cons);
@@ -48,8 +51,16 @@ public class ReflectTestScript {
                 }
             }
 
-            //Instruction ins = (Instruction) Class.forName("sml.AddInstruction").newInstance("add", 1, 2, 3);
-            //System.out.println(ins.toString());
+            Object[] argArray = new Object[4];
+            argArray[0] = "add";
+            argArray[1] = 8;
+            argArray[2] = 22;
+            argArray[3] = 23;
+            Instruction ins = (Instruction) Class.forName("sml.AddInstruction")
+                    .getConstructors()[1].newInstance(argArray);
+//            Instruction ins = (Instruction) Class.forName("sml.AddInstruction")
+//                    .getConstructors()[1].newInstance("add", 8, 22, 23);
+            System.out.println(ins.toString());
         }
         catch(Exception e) {
             e.printStackTrace();

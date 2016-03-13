@@ -15,7 +15,7 @@ public class InstructionFactoryTest {
         InstructionFactory anotherFactory = InstructionFactory.getInstance();
 
         assertNotNull(factory);
-        assertEquals(factory, anotherFactory);
+        assertEquals(factory, anotherFactory); //singleton
     }
 
     @Test
@@ -27,8 +27,14 @@ public class InstructionFactoryTest {
     @Test
     public void testGetInstructionDoesNotReturnNull() {
         InstructionFactory factory = InstructionFactory.getInstance();
-        Instruction ins = factory.getInstruction("Add", "8 22 23");
-
+        Instruction ins = null;
+        try {
+            ins = factory.getInstruction("add", "8 22 23");
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(ins);
         assertNotNull(ins);
     }
 
