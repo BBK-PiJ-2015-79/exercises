@@ -3,6 +3,9 @@ sealed trait Colour {
   override def toString = {
     getClass.getName.charAt(0).toString
   }
+  def toLongString:String = {
+    getClass.getName
+  }
 }
 case class Blue() extends Colour
 case class Green() extends Colour

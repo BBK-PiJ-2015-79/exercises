@@ -3,12 +3,13 @@ import scala.io.StdIn._
 class TextUI {
   //TODO handle variable number of colours/guesses
   def greet() = {
-    println("""Welcome to Mastermind.
+    val validColourString = ConfigIO.validColoursVector.map(_.toLongString).reduce((c1,c2) => c1 + ", " + c2)
+    println(s"""Welcome to Mastermind.
 
 This is a text version of the classic board game Mastermind.
 The computer will think of a secret code.
-The code consists of 4 colored pegs.
-The pegs may be one of six colors: blue, green , orange, purple, red, or yellow.
+The code consists of ${ConfigIO.codeSize} colored pegs.
+The pegs may be one of ${ConfigIO.numberOfValidColours} colors: ${validColourString}.
 A color may appear more than once in the code.
 
 You try to guess what colored pegs are in the code and what order they are in
@@ -19,15 +20,8 @@ For each peg in the guess that is the correct color, but is out of position, you
 Only the first letter of the color is displayed. B for Blue, R for Red, and so forth.
 When entering guesses you only need to enter the first character of the color as a capital letter.
 
-You have 12 to guess the answer or you lose the game.
-
 Generating secret code ....
-The secret code is YRBY
-You have 12 guesses left.
-
-What is your next guess?
-Type in the characters for your guess and press enter.
-Enter guess: OOOO""")
+""")
   }
 
   def displayCode(code: Code) = {

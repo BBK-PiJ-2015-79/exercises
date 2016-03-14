@@ -7,6 +7,7 @@ object ConfigIO {
   val numberOfValidColours = cf.getInt("mastermind.numberOfValidColours")
   val orderOfColours = cf.getString("mastermind.orderOfColours")
   val validColoursVector = generateValidColoursVector()
+  val numberOfGuesses = cf.getInt("mastermind.numberOfGuesses")
 
   private def generateValidColoursVector(): Vector[Colour] ={
     val cf = new ColourFactory
