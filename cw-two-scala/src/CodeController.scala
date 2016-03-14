@@ -1,7 +1,6 @@
 class CodeController(val code:Code) {
 
   def validateGuess(guess: Guess) = {
-    //code.getCode.size == guess.coloursGuessed.size
     val validColours = ConfigIO.validColoursVector
     guess.coloursGuessed.forall(c => validColours.contains(c))
   }
@@ -15,6 +14,11 @@ class CodeController(val code:Code) {
     }.foldLeft(0)(_ + _._2) - numBlackPegs
 
     new Feedback(Vector.fill(numBlackPegs)(Black()) ++ Vector.fill(numWhitePegs)(White()))
+  }
+
+  def isWinningGuess(guess: Guess) = {
+    //guess.coloursGuessed.zip(code.getCode).forall()
+    guess.coloursGuessed.sameElements(code.getCode)
   }
 
 

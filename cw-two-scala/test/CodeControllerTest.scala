@@ -69,4 +69,25 @@ class CodeControllerTest {
   def checkGuessRejected() = {
     assertFalse(cc.validateGuess(new Guess(Vector(Red(), Blue(), Green(), Heliotrope()))))
   }
+
+  @Test
+  def checkCorrectGuessReturnsTrue(): Unit = {
+    mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
+    val guess = new Guess(Vector(Red(), Green(), Blue(), Orange()))
+    assertTrue(mc.isWinningGuess(guess))
+  }
+
+  @Test
+  def checkIncorrectGuessReturnsFalse(): Unit = {
+    mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
+    val guess = new Guess(Vector(Red(), Green(), Blue(), Orange()))
+    assertFalse(mc.isWinningGuess(guess))
+  }
+
+  @Test
+  def checkOrderOfColoursMatters(): Unit = {
+    mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
+    val guess = new Guess(Vector(Green(), Red(), Blue(), Orange()))
+    assertFalse(mc.isWinningGuess(guess))
+  }
 }
