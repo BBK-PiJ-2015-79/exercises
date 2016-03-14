@@ -1,4 +1,3 @@
-import javax.swing.plaf.ColorUIResource
 
 sealed trait Colour {
   override def toString = {
