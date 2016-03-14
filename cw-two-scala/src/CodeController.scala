@@ -1,7 +1,9 @@
 class CodeController(val code:Code) {
 
   def validateGuess(guess: Guess) = {
-    code.getCode.size == guess.coloursGuessed.size
+    //code.getCode.size == guess.coloursGuessed.size
+    val validColours = ConfigIO.validColoursVector
+    guess.coloursGuessed.forall(c => validColours.contains(c))
   }
 
   def getFeedback(guess: Guess) = {

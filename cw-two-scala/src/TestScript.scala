@@ -13,6 +13,10 @@ object TestScript extends App {
   ui.greet()
   ui.promptForGuess(2)
   ui.showFeedback(testFeedBack, 2)
+  println(ConfigIO.codeSize)
+  println(ConfigIO.numberOfValidColours)
+  println(ConfigIO.orderOfColours)
+
 
 
 }

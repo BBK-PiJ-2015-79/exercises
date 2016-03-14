@@ -61,17 +61,12 @@ class CodeControllerTest {
   }
 
   @Test
-  def checkGuessTooSmallRejected() = {
-    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue()))))
+  def checkGuessAllGood() = {
+    assertTrue(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue()))))
   }
 
   @Test
-  def checkGuessTooLargeRejected() = {
-    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue(), Green(), Blue()))))
-  }
-
-  @Test
-  def checkRightSizeGuessAccepted() = {
-    assertTrue(cc.validateGuess(new Guess(Vector(Green(), Blue(), Green(), Blue()))))
+  def checkGuessRejected() = {
+    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Blue(), Green(), Heliotrope()))))
   }
 }
