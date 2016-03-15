@@ -14,3 +14,6 @@ Vector(Blue(), Green()).sameElements(Array(Blue(), Green()).toVector)
 Vector(Blue(), Green()).sameElements(Array(Blue(), Green()))
 Vector(Blue(), Green()).sameElements(Array(Green(), Blue()))
 Vector(Blue(), Green()).corresponds(Array(Blue(), Green()).toVector){_ == _}
+val guessString = "CBGB"
+val coloursGuessed = (for{c <- guessString} yield cf.getInstance(c.toString)).toVector
+

@@ -7,7 +7,7 @@ object TestScript extends App {
   println(cc.code)
 
   val ui = new TextUI
-  val guess = new Guess(Vector(Blue(), Blue()))
+  val guess = new Guess("BB")
   val feedback = new Feedback(Vector(Black()))
   val testFeedBack = Array[(Guess, Feedback)]((guess, feedback), null, null)
   ui.greet()

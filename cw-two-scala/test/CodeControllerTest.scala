@@ -21,73 +21,73 @@ class CodeControllerTest {
   @Test
   def testGetFeedbackReturnsEmpty() = {
     mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
-    val feedback = mc.getFeedback(new Guess(Vector(Green(), Green(), Green(), Green())))
+    val feedback = mc.getFeedback(new Guess("GGGG"))
     assertTrue(feedback.pegs.isEmpty)
   }
 
   @Test
   def testGetFeedbackReturnsOneBlack() = {
     mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
-    val feedback = mc.getFeedback(new Guess(Vector(Green(), Red(), Green(), Green())))
+    val feedback = mc.getFeedback(new Guess("GRGG"))
     assertEquals("Black", feedback.toString)
   }
 
   @Test
   def testGetFeedbackReturnsOneWhite() = {
     mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
-    val feedback = mc.getFeedback(new Guess(Vector(Green(), Red(), Green(), Green())))
+    val feedback = mc.getFeedback(new Guess("GRGG"))
     assertEquals("White", feedback.toString)
   }
 
   @Test
   def testGetFeedbackReturnsOneBlackOneWhite() = {
     mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
-    val feedback = mc.getFeedback(new Guess(Vector(Red(), Red(), Green(), Green())))
+    val feedback = mc.getFeedback(new Guess("RRGG"))
     assertEquals("Black, White", feedback.toString)
   }
 
   @Test
   def testGetFeedbackReturnsOneBlackThreeWhites() = {
     mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red(), Green())))
-    val feedback = mc.getFeedback(new Guess(Vector(Red(), Red(), Green(), Green(), Blue())))
+    val feedback = mc.getFeedback(new Guess("RRGGB"))
     assertEquals("Black, White, White, White", feedback.toString)
   }
 
   @Test
   def testGetFeedbackReturnsAllBlacks() = {
     mc = new CodeController(new MockCode(Array(Red(), Blue(), Red(), Red())))
-    val feedback = mc.getFeedback(new Guess(Vector(Red(), Blue(), Red(), Red())))
+    val feedback = mc.getFeedback(new Guess("RBRR"))
     assertEquals("Black, Black, Black, Black", feedback.toString)
   }
 
   @Test
   def checkGuessAllGood() = {
-    assertTrue(cc.validateGuess(new Guess(Vector(Red(), Green(), Blue()))))
+    assertTrue(cc.validateGuess(new Guess("RGB")))
   }
 
   @Test
   def checkGuessRejected() = {
-    assertFalse(cc.validateGuess(new Guess(Vector(Red(), Blue(), Green(), Heliotrope()))))
+    assertFalse(cc.validateGuess(new Guess("RBGH")))
   }
 
   @Test
   def checkCorrectGuessReturnsTrue(): Unit = {
     mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
-    val guess = new Guess(Vector(Red(), Green(), Blue(), Orange()))
+    val guess = new Guess("RGBO")
     assertTrue(mc.isWinningGuess(guess))
   }
 
   @Test
   def checkIncorrectGuessReturnsFalse(): Unit = {
     mc = new CodeController(new MockCode(Array(Red(), Red(), Red(), Red())))
-    val guess = new Guess(Vector(Red(), Green(), Blue(), Orange()))
+    val guess = new Guess("RGBO")
     assertFalse(mc.isWinningGuess(guess))
   }
 
   @Test
   def checkOrderOfColoursMatters(): Unit = {
     mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
-    val guess = new Guess(Vector(Green(), Red(), Blue(), Orange()))
+    val guess = new Guess("GRBO")
     assertFalse(mc.isWinningGuess(guess))
   }
 }
