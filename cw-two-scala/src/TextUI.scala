@@ -34,15 +34,15 @@ What is your next guess?
 Type in the characters for your guess and press enter.
 Enter guess: """)
   }
-  def getGuess() = {
-    val guessString = readLine()
-    guessString.trim.toUpperCase //allow lower case input as valid
+  def getUserInput() = {
+    val userInput = readLine()
+    userInput.trim.toUpperCase //allow lower case input as valid
   }
-  def showFeedback(guessHistory : Array[(Guess, Feedback)], size: Int) = {
+  def showFeedback(guessHistory : Array[(Guess, Feedback)]) = {
     guessHistory.foreach(t => {
       if(t == null) {
         // print null feedback
-        println("." * size)
+        println("." * ConfigIO.codeSize)
       }
       else {
         // print
@@ -51,4 +51,23 @@ Enter guess: """)
     })
   }
 
+  def displayWinningMessage() ={
+    print("""You solved the puzzle! Good job.
+Enter Y for another game or anything else to quit: """)
+  }
+
+  def displayLosingMessage() ={
+    print("""You did not solve the puzzle. Too bad.
+Enter Y for another game or anything else to quit: """)
+  }
+
+  def playAgain() = {
+    val playAgain = getUserInput()
+    if(playAgain == "Y") {
+      true
+    }
+    else {
+      false
+    }
+  }
 }

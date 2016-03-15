@@ -5,21 +5,38 @@ class GameImpl extends GameAbstractImpl{
     * quits.
     */
   override def runGames: Unit = {
-    var codeGuessed: Boolean = false
-    var numberOfGuessesLeft = ConfigIO.numberOfGuesses
+    var playGame = true
     val ui = new TextUI
-    val code = new CodeImpl(ConfigIO.codeSize)
-    val cc = new CodeController(code)
-    val guessHistory = new Array[(Guess, Feedback)](ConfigIO.numberOfGuesses)
 
     ui.greet()
 
-    while(!codeGuessed && numberOfGuessesLeft > 0){
-      if(getShowCode) ui.displayCode(code)
-      ui.promptForGuess(numberOfGuessesLeft)
-      //val guess:Guess = ui.getGuess()
-      //codeGuessed = cc.isWinningGuess(guess)
-      numberOfGuessesLeft -= 1
+    while(playGame) {
+      var codeGuessed: Boolean = false
+      var numberOfGuessesLeft = ConfigIO.numberOfGuesses
+
+      val code = new CodeImpl(ConfigIO.codeSize)
+      val cc = new CodeController(code)
+      val guessHistory = new Array[(Guess, Feedback)](ConfigIO.numberOfGuesses)
+
+      while(!codeGuessed && numberOfGuessesLeft > 0){
+        if(getShowCode) ui.displayCode(code)
+        ui.promptForGuess(numberOfGuessesLeft)
+
+        val guess = new Guess(ui.getUserInput())
+        if(cc.validateGuess(guess)) {
+          //valid guess, do stuff!
+          guessHistory(guessHistory.length - numberOfGuessesLeft) = (guess, cc.getFeedback(guess))
+          ui.showFeedback(guessHistory)
+          codeGuessed = cc.isWinningGuess(guess)
+          numberOfGuessesLeft -= 1
+        }
+      }
+
+      if(codeGuessed) ui.displayWinningMessage()
+      else ui.displayLosingMessage()
+      playGame = ui.playAgain()
     }
+
   }
+
 }

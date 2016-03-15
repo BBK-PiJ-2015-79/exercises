@@ -62,7 +62,7 @@ class CodeControllerTest {
 
   @Test
   def checkGuessAllGood() = {
-    assertTrue(cc.validateGuess(new Guess("RGB")))
+    assertTrue(cc.validateGuess(new Guess("RGOB")))
   }
 
   @Test
@@ -89,5 +89,13 @@ class CodeControllerTest {
     mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
     val guess = new Guess("GRBO")
     assertFalse(mc.isWinningGuess(guess))
+  }
+
+  @Test
+  def checkBadGuessRejected(): Unit = {
+    mc = new CodeController(new MockCode(Array(Red(), Green(), Blue(), Orange())))
+    val guess = new Guess("R1RB")
+    println(guess)
+    assertFalse(mc.validateGuess(guess))
   }
 }

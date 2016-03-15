@@ -20,4 +20,6 @@ class ColourFactoryTest {
   def testGetInstanceReturnsRed(): Unit ={
     assertEquals(Red(), cf.getInstance("R"))
   }
+
+
 }
