@@ -14,5 +14,4 @@ abstract class GameAbstractImpl extends Game {
     showCode = easy
   }
 
-  def getShowCode = showCode
 }

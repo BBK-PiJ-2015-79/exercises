@@ -1,3 +1,5 @@
+import com.typesafe.config.{ConfigValueFactory, ConfigFactory}
+
 /**
   * Created by chris on 26/02/2016.
   */
@@ -17,8 +19,11 @@ object TestScript extends App {
 //  println(ConfigIO.numberOfValidColours)
 //  println(ConfigIO.orderOfColours)
 
-  val game = new GameImpl(true)
-  game.runGames
+//  val game = new GameImpl(true)
+//  game.runGames
+  val cf = ConfigFactory.load()
+  cf.withValue("mastermind.codeSize", ConfigValueFactory.fromAnyRef(2))
+  println(cf.getInt("mastermind.codeSize"))
 
 
 
