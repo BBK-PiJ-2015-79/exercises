@@ -17,7 +17,7 @@ object TestScript extends App {
 //  println(ConfigIO.numberOfValidColours)
 //  println(ConfigIO.orderOfColours)
 
-  val game = new GameImpl
+  val game = new GameImpl(true)
   game.runGames
 
 

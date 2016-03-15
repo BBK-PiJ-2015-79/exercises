@@ -1,9 +1,10 @@
 
-class GameImpl extends GameAbstractImpl{
+class GameImpl(easy: Boolean = false) extends Game {
   /**
     * Run a one or more games of mastermind, until the player
     * quits.
     */
+  val showCode = easy
   override def runGames: Unit = {
     var playGame = true
     val ui = new TextUI
@@ -19,7 +20,7 @@ class GameImpl extends GameAbstractImpl{
       val guessHistory = new Array[(Guess, Feedback)](ConfigIO.numberOfGuesses)
 
       while(!codeGuessed && numberOfGuessesLeft > 0){
-        if(getShowCode) ui.displayCode(code)
+        if(showCode) ui.displayCode(code)
         ui.promptForGuess(numberOfGuessesLeft)
 
         val guess = new Guess(ui.getUserInput())
@@ -39,4 +40,10 @@ class GameImpl extends GameAbstractImpl{
 
   }
 
+}
+
+object GameImpl {
+  def apply(easy: Boolean) = {
+    new GameImpl(easy)
+  }
 }
