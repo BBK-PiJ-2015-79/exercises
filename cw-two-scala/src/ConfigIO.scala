@@ -1,5 +1,10 @@
 import com.typesafe.config.ConfigFactory
 
+/**
+*  ConfigIO loads values from application.conf using Typsafe
+*  generateValidColoursVector method generates a Vector of valid colours
+*  based on config value of number of valid colours
+*/
 object ConfigIO {
 
   val cf = ConfigFactory.load()
