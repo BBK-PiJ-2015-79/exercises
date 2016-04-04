@@ -1,7 +1,9 @@
 import scala.io.StdIn._
 
+/**
+*  Class responsible for reading and writing to the command line
+*/
 class TextUI {
-  //TODO handle variable number of colours/guesses
   def greet() = {
     val validColourString = ConfigIO.validColoursVector.map(_.toLongString).reduce((c1,c2) => c1 + ", " + c2)
     println(s"""Welcome to Mastermind.
@@ -34,10 +36,12 @@ What is your next guess?
 Type in the characters for your guess and press enter.
 Enter guess: """)
   }
+  
   def getUserInput() = {
     val userInput = readLine()
     userInput.trim.toUpperCase //allow lower case input as valid
   }
+  
   def showFeedback(guessHistory : Array[(Guess, Feedback)]) = {
     guessHistory.foreach(t => {
       if(t == null) {

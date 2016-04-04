@@ -1,3 +1,7 @@
+/**
+*  ColourFactory returns a new Colour corresponding
+*  to its first letter else null
+*/
 class ColourFactory {
 
   def getInstance(colour : String): Colour = colour match{

@@ -1,3 +1,8 @@
+/**
+*  Feedback pegs that represents whether a guess was correct
+*  Black pegs represent a correct guess in the correct position
+*  White pegs represent a correct guess in the incorrect position
+*/
 sealed trait FeedbackPeg{
   override def toString = {
     getClass.getName
